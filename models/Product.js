@@ -31,14 +31,21 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       // TODO: Set a default value of 10
-      
+      defaultValue: 10,
       // TODO: Validates that the value is numeric.
+      validate: {
+        isNumeric: true
+      }
 
     },
     category_id: {
       type: DataTypes.INTEGER,
 
       // TODO: References the Category model's id
+      references: {
+        model: 'category',
+        key: 'id',
+      }
 
     }
   },
