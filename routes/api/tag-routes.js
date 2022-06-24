@@ -6,15 +6,34 @@ const { Tag, Product, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   // find all tags
   // be sure to include its associated Product data
+  Tag.findAll({
+    include: { model: Product },
+  }).then(r => {
+    res.status(200).json(r)
+  })
+  .catch(e => res.status(500).json(e))
 });
 
 router.get('/:id', (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
+  Tag.findByPk(req.params.id, {
+    include: { model: Product }
+  })
+  .then(r => res.status(200).json(r))
+  .catch(e => res.status(500).json(e))
 });
 
 router.post('/', (req, res) => {
   // create a new tag
+  Tag.create(req.body)
+  .then((tag) => {
+    res.status(200).json(tag);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(400).json(err);
+  });
 });
 
 router.put('/:id', (req, res) => {
@@ -23,6 +42,9 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
+  Tag.destroy({ where: {id: req.params.id}})
+  .then(data => res.json(data))
+  .catch(err => res.status(400).json(err))
 });
 
 module.exports = router;
