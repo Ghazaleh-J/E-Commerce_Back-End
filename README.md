@@ -21,9 +21,9 @@ In this application, I build a back end for an e-commerce site by modifying star
 * SET DB_PASSWORD to 'YOUR-MYSQL-PASSWORD'
 * npm install
 * Load schema.sql via MySQL command line:
-    - source schema.sql
+    - source db/schema.sql
 * npm run seed
 * node server.js
 
 ## Link
-[Video Demo](pending)
+[Video Demo](https://drive.google.com/file/d/1qwQMUzNpGh715QLcwjWgc8gqOlAmMWoP/view)
